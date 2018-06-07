@@ -1,8 +1,9 @@
-ARG repo_name
-
-FROM ${repo_name}/centos7_custom:latest
+FROM centos:7
 
 ADD ruby-2.5.1.tar.gz /var/tmp/
+
+RUN yum update -y \
+ && yum install -y gcc make openssl-devel zlib-devel
 
 RUN \
  cd /var/tmp/ruby-2.5.1/ \
