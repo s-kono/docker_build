@@ -7,6 +7,8 @@ set -u
 export LANG=C
 export PATH=/sbin:/bin:/usr/sbin:/usr/bin
 
+_proxy=
+
 #readonly FULL0=$( readlink -f $0 )
 readonly FULL0=$( cd $( dirname $0 ) && echo $( pwd )/$( basename $0 ) )
 readonly DIR=$( dirname ${FULL0} )
@@ -17,7 +19,7 @@ readonly YYYYMMDD=$( date +%Y%m%d )
 
 echo -e >&2 "[example:option] --pull --no-cache -q\n"
 
-_com="sudo docker build ${args} --build-arg repo_name=${REPO_NAME} -t ${REPO_NAME}/${IMAGE_NAME}:${YYYYMMDD} ${DIR}/"
+_com="sudo docker build ${args} --build-arg HTTP_PROXY=${_proxy} --build-arg HTTPS_PROXY=${_proxy} --build-arg http_proxy=${_proxy} --build-arg https_proxy=${_proxy} --build-arg repo_name=${REPO_NAME} -t ${REPO_NAME}/${IMAGE_NAME}:${YYYYMMDD} ${DIR}/"
 echo -e >&2 "  [run] ${_com}\n"
 eval ${_com}
 ret=$?
