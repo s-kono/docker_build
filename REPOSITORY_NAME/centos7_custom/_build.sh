@@ -31,7 +31,6 @@ if [[ ${ret} -eq 0 ]]; then
     sudo docker images ${REPO_NAME}/${IMAGE_NAME}:latest | grep -qv "^REPOSITORY"
   if [[ $? -eq 0 ]]; then
     echo >&2 " sudo docker images | sort | grep --color -E \"${REPO_NAME}/${IMAGE_NAME}|\$\""
-    echo >&2 " sudo docker rmi ${REPO_NAME}/${IMAGE_NAME}:latest"
   fi
 
     image_id=$( sudo docker images ${REPO_NAME}/${IMAGE_NAME}:${YYYYMMDD} | tail -1 | awk '{print $3}' )
