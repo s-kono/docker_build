@@ -10,6 +10,6 @@ RUN yum update -y \
       samba-client screen sendmail-devel subversion sudo syslinux sysstat \
       telnet tmux traceroute vim wget whois zsh \
  && yum --enablerepo=epel install -y \
-      colordiff fio iftop jq lbzip2 nethogs nginx nkf
+      colordiff fio iftop jq lbzip2 nethogs nginx nkf python34 python36
 
 RUN yum clean all
