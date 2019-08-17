@@ -3,7 +3,7 @@
 set -u
 
 export LANG=C
-export LC_CTYPE=en_US.UTF-8
+export LC_CTYPE=en_US.utf8
 export PATH=/sbin:/bin:/usr/sbin:/usr/bin
 
 #readonly FULL0=$( readlink -f $0 )
