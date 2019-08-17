@@ -3,7 +3,7 @@ FROM centos:7
 ADD ruby-2.5.1.tar.gz /var/tmp/
 
 RUN yum update -y \
- && yum install -y gcc make openssl-devel zlib-devel
+ && yum install -y gcc make openssl-devel zlib-devel less
 
 RUN \
  cd /var/tmp/ruby-2.5.1/ \
