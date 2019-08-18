@@ -11,7 +11,7 @@ $ ./_run.sh
 
   or
 
-$ sudo docker run -it --rm skono/headless-chrome
+$ sudo docker run -h headless-chrome -it --rm skono/headless-chrome
 ```
 
 ```sh
