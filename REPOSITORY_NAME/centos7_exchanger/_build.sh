@@ -37,7 +37,7 @@ if [[ ${ret} -eq 0 ]]; then
     image_id=$( sudo docker images ${REPO_NAME}/${IMAGE_NAME}:${YYYYMMDD} | tail -1 | awk '{print $3}' )
     echo >&2 " sudo docker tag ${image_id} ${REPO_NAME}/${IMAGE_NAME}:latest"
     echo >&2 " sudo docker images | sort | grep --color -E \"${REPO_NAME}/${IMAGE_NAME}|\$\""
-    echo >&2 " sudo docker push ${REPO_NAME}/${IMAGE_NAME}"
+    echo >&2 " docker push ${REPO_NAME}/${IMAGE_NAME}"
     echo >&2
 else
     echo >&2 "err: ${ret}"
