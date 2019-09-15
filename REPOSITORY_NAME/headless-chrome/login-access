@@ -67,12 +67,6 @@ def main(args):
     # print(cookie)
     [driver.add_cookie(c) for c in cookie]
 
-    # driver.get(args.url)
-    # time.sleep(2)
-    # page_width = driver.execute_script('return document.body.scrollWidth')
-    # page_height = driver.execute_script('return document.body.scrollHeight')
-    # driver.set_window_size(page_width, page_height)
-
     driver.get(args.url)
     time.sleep(4)
     if args.output is None:
@@ -80,7 +74,6 @@ def main(args):
     else:
         with open(args.output, "w") as f:
             f.write(driver.page_source)
-    # driver.save_screenshot('/path/to/mount/screenshot.png')
     print(driver.title)
     driver.quit()
 
