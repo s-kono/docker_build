@@ -14,3 +14,4 @@ RUN apt update \
 ENV LANG=en_US.utf8
 
 ADD login-access /
+ADD headless-chrome /
