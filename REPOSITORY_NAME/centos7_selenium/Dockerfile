@@ -7,7 +7,7 @@ RUN yum update -y \
  && yum clean all
 
 RUN curl https://bootstrap.pypa.io/get-pip.py | python3 - \
- && pip install selenium chromedriver-binary==74.0.3729.6
+ && pip install selenium chromedriver-binary==$( curl http://chromedriver.storage.googleapis.com/LATEST_RELEASE )
 # http://chromedriver.chromium.org/downloads
 
-ADD headless-chrome /var/tmp/
+ADD headless-chrome /
