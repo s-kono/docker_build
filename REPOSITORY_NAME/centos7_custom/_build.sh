@@ -19,7 +19,7 @@ readonly YYYYMMDD=$( date +%Y%m%d )
 
 echo -e >&2 "[example:option] --pull --no-cache -q\n"
 
-_com="sudo docker build ${args} --build-arg HTTP_PROXY=${_proxy} --build-arg HTTPS_PROXY=${_proxy} --build-arg http_proxy=${_proxy} --build-arg https_proxy=${_proxy} --build-arg repo_name=${REPO_NAME} -t ${REPO_NAME}/${IMAGE_NAME}:${YYYYMMDD} ${DIR}/"
+_com="docker build ${args} --build-arg HTTP_PROXY=${_proxy} --build-arg HTTPS_PROXY=${_proxy} --build-arg http_proxy=${_proxy} --build-arg https_proxy=${_proxy} --build-arg repo_name=${REPO_NAME} -t ${REPO_NAME}/${IMAGE_NAME}:${YYYYMMDD} ${DIR}/"
 echo -e >&2 "  [run] ${_com}\n"
 eval ${_com}
 ret=$?
@@ -28,14 +28,14 @@ ret=$?
 if [[ ${ret} -eq 0 ]]; then
     echo >&2 "run:"
 
-    sudo docker images ${REPO_NAME}/${IMAGE_NAME}:latest | grep -qv "^REPOSITORY"
+    docker images ${REPO_NAME}/${IMAGE_NAME}:latest | grep -qv "^REPOSITORY"
   if [[ $? -eq 0 ]]; then
-    echo >&2 " sudo docker images | sort | grep --color -E \"${REPO_NAME}/${IMAGE_NAME}|\$\""
+    echo >&2 " docker images | sort | grep --color -E \"${REPO_NAME}/${IMAGE_NAME}|\$\""
   fi
 
-    image_id=$( sudo docker images ${REPO_NAME}/${IMAGE_NAME}:${YYYYMMDD} | tail -1 | awk '{print $3}' )
-    echo >&2 " sudo docker tag ${image_id} ${REPO_NAME}/${IMAGE_NAME}:latest"
-    echo >&2 " sudo docker images | sort | grep --color -E \"${REPO_NAME}/${IMAGE_NAME}|\$\""
+    image_id=$( docker images ${REPO_NAME}/${IMAGE_NAME}:${YYYYMMDD} | tail -1 | awk '{print $3}' )
+    echo >&2 " docker tag ${image_id} ${REPO_NAME}/${IMAGE_NAME}:latest"
+    echo >&2 " docker images | sort | grep --color -E \"${REPO_NAME}/${IMAGE_NAME}|\$\""
     echo >&2 " docker push ${REPO_NAME}/${IMAGE_NAME}"
     echo >&2
 else
