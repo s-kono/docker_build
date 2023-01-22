@@ -1,0 +1,19 @@
+version: '3.3'
+services:
+  forward_proxy2:
+    image: httpd:2.4
+    volumes:
+      - '$PWD/conf/httpd.conf:/usr/local/apache2/conf/httpd.conf'
+    network_mode: bridge
+    ports:
+      - '80:88'
+      - '88:88'
+      - '8080:88'
+    container_name: forward_proxy2
+    logging:
+      driver: json-file
+      options:
+        max-size: 1m
+        max-file: '7'
+    environment:
+      - TZ=Asia/Tokyo
